@@ -193,6 +193,26 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("loans"))[1]; ?>">
+            
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("loans"))[0]; ?>">
+                            <i class="nav-icon fa fa-money"></i>
+                            <p>Loan
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?= base_url('loans'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("loans"))[0]; ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Loan
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("salary","increment_salary"))[1]; ?>">
             
                         <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("salary","increment_salary"))[0]; ?>">
