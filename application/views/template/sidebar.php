@@ -131,8 +131,15 @@
 
                         </ul>
                     </li>
-                    
-                    
+
+                    <li class="nav-item">
+                        <a href="<?= base_url('daily'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("daily"))[0]; ?>">
+                            <i class="nav-icon fa fa-line-chart"></i>
+                            <p>
+                                Daily
+                            </p>
+                        </a>
+                    </li>
 
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("sales","salespayments"))[1]; ?>">
             

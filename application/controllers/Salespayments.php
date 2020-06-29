@@ -38,18 +38,18 @@ class Salespayments extends CI_Controller {
             $data = [
                 'client'    => $this->input->post('client'),
                 'type'      => tsalepay(),
-                'debit'    => $this->input->post('challan'),
+                'debit'     => $this->input->post('challan'),
                 'tra_id'    => $insert_id,
-                'date'          => date('Y-m-d',strtotime($this->input->post('date')))
+                'date'      => date('Y-m-d',strtotime($this->input->post('date')))
             ];
             $this->db->insert('transactions_b',$data);
 
             $data = [
                 'client'    => $this->input->post('client'),
                 'type'      => tsalepay(),
-                'debit'    => $this->input->post('invoice'),
+                'debit'     => $this->input->post('invoice'),
                 'tra_id'    => $insert_id,
-                'date'          => date('Y-m-d',strtotime($this->input->post('date')))
+                'date'      => date('Y-m-d',strtotime($this->input->post('date')))
             ];
             $this->db->insert('transactions_w',$data);
 
