@@ -19,6 +19,21 @@ class General_model extends CI_Model
 		return $this->db->get_where('clients' ,['id' => $id])->row_array();	
 	}
 
+	public function _expanse_client($id)
+	{
+		return $this->db->get_where('client_expense' ,['id' => $id])->row_array();	
+	}
+
+	public function _salary_client($id)
+	{
+		return $this->db->get_where('employees' ,['id' => $id])->row_array();	
+	}
+
+	public function _loan_client($id)
+	{
+		return $this->db->get_where('loan' ,['id' => $id])->row_array();	
+	}
+
 	public function _product($id)
 	{
 		return $this->db->get_where('products' ,['id' => $id])->row_array();	
@@ -37,6 +52,21 @@ class General_model extends CI_Model
 	public function purchase_clients()
 	{
 		return $this->db->get_where('clients',['df' => '','type' => 'Purchase'])->result_array();
+	}
+
+	public function expense_clients()
+	{
+		return $this->db->get_where('client_expense',['df' => ''])->result_array();
+	}
+
+	public function get_employees()
+	{
+		return $this->db->get_where('employees',['df' => ''])->result_array();
+	}
+
+	public function get_loans()
+	{
+		return $this->db->get_where('loans')->result_array();
 	}
 
 	public function products()

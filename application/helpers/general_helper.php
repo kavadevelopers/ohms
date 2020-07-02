@@ -87,6 +87,18 @@ function topening(){
     return 5;
 }
 
+function texpensepay(){
+    return 6;
+}
+
+function tsalarypay(){
+    return 7;
+}
+
+function tloanpay(){
+    return 8;
+}
+
 function typestring($type){
     if($type == 1){
         return "Sales";

@@ -39,6 +39,9 @@
                                                     <option value="">-- Select Type --</option>
                                                     <option value="1">Sale</option>
                                                     <option value="2">Purchase</option>
+                                                    <option value="3">Expenses</option>
+                                                    <option value="4">Salary</option>
+                                                    <option value="5">Loan</option>
                                                 </select>
                                             </td>
                                             <td>
@@ -92,9 +95,14 @@
         function which_clients (val,id) {
             if(val == 1){
                saleClient(id);
-            }
-            else if(val == 2){
+            }else if(val == 2){
                 purchaseClient(id);
+            }else if(val == 3){
+                expenseClient(id);
+            }else if(val == 4){
+                salaryClient(id);
+            }else if(val == 5){
+                loanClient(id);
             }else{
                 noClient(id);
             }
@@ -125,6 +133,38 @@
             $('#purchase'+id).select2();
         }
 
+        function expenseClient (id) {
+            data = '<select class="form-control form-control-sm select2" name="client[]" style="max-width: 200px;" id="purchase'+id+'" required>';
+                data += '<option value="">-- Select Client --</option>';
+                    data += '<?php foreach ($this->general_model->expense_clients() as $key => $client) { ?>';
+                        data += '<option value="<?= $client['id'] ?>" ><?= $client['name'] ?></option>';
+                    data += '<?php } ?>';
+            data += '</select>';
+            $('#td'+id).html(data);
+            $('#purchase'+id).select2();
+        }
+        function salaryClient (id) {
+            data = '<select class="form-control form-control-sm select2" name="client[]" style="max-width: 200px;" id="purchase'+id+'" required>';
+                data += '<option value="">-- Select Client --</option>';
+                    data += '<?php foreach ($this->general_model->get_employees() as $key => $client) { ?>';
+                        data += '<option value="<?= $client['id'] ?>" ><?= $client['name'] ?></option>';
+                    data += '<?php } ?>';
+            data += '</select>';
+            $('#td'+id).html(data);
+            $('#purchase'+id).select2();
+        }
+
+        function loanClient (id) {
+            data = '<select class="form-control form-control-sm select2" name="client[]" style="max-width: 200px;" id="purchase'+id+'" required>';
+                data += '<option value="">-- Select Client --</option>';
+                    data += '<?php foreach ($this->general_model->get_loans() as $key => $client) { ?>';
+                        data += '<option value="<?= $client['id'] ?>" ><?= $client['loan_no'] ?> - <?= $client['bank'] ?></option>';
+                    data += '<?php } ?>';
+            data += '</select>';
+            $('#td'+id).html(data);
+            $('#purchase'+id).select2();   
+        }
+
         function noClient(id) {
             data = '<select class="form-control form-control-sm select2" name="client[]" style="display: none; max-width: 200px;" id="noclient'+id+'" required>';
                 data += '<option value="">-- Select Client --</option>';
@@ -132,6 +172,8 @@
             $('#td'+id).html(data);
             $('#noclient'+id).select2();
         }
+
+
 
         function removeRow(id) {
             $('#tr'+id).remove();
@@ -153,6 +195,9 @@
                         dy += '<select class="form-control form-control-sm" name="chl_inv[]" required>';
                             dy += '<option value="1">Invoice</option>';
                             dy += '<option value="2">Chalan</option>';
+                            dy += '<option value="3">Expenses</option>';
+                            dy += '<option value="4">Salary</option>';
+                            dy += '<option value="5">Loan</option>';
                         dy += '</select>';
                     dy += '</td><td class="text-center" id="td'+rowCount+'">';
                         dy += '<select class="form-control form-control-sm select2" name="client[]" id="noClient'+rowCount+'" style="display: none; max-width: 200px;" required>';

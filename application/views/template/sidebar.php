@@ -132,14 +132,39 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="<?= base_url('daily'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("daily"))[0]; ?>">
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("daily"))[1]; ?>">
+            
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("daily"))[0]; ?>">
                             <i class="nav-icon fa fa-line-chart"></i>
-                            <p>
-                                Daily
+                            <p>Daily
+                                <i class="fa fa-angle-left right"></i>
                             </p>
                         </a>
+                        
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('daily'); ?>" class="nav-link <?php if($this->uri->segment(2) == ""){ menu($this->uri->segment(1),array("daily"))[0];  }  ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Daily
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('daily/check'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("check"))[0]; ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Daily Check
+                                    </p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
+
+                    
 
                     <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("sales","salespayments"))[1]; ?>">
             
