@@ -12,7 +12,7 @@ class Salary extends CI_Controller {
     {
         $data['_title'] = 'Attendance Sheet';
                             $this->db->order_by('id','desc');
-                            $this->db->limit(100);
+                            $this->db->limit(200);
         $data['days']   =   $this->db->get('days')->result_array();
         $this->load->template('salary/sheet',$data);
     }
