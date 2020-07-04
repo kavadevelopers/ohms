@@ -190,14 +190,14 @@
                             dy += '<option value="">-- Select Type --</option>';
                             dy += '<option value="1">Sale</option>';
                             dy += '<option value="2">Purchase</option>';
+                            dy += '<option value="3">Expenses</option>';
+                            dy += '<option value="4">Salary</option>';
+                            dy += '<option value="5">Loan</option>';
                         dy += '</select>';
                     dy += '</td><td>';
                         dy += '<select class="form-control form-control-sm" name="chl_inv[]" required>';
                             dy += '<option value="1">Invoice</option>';
                             dy += '<option value="2">Chalan</option>';
-                            dy += '<option value="3">Expenses</option>';
-                            dy += '<option value="4">Salary</option>';
-                            dy += '<option value="5">Loan</option>';
                         dy += '</select>';
                     dy += '</td><td class="text-center" id="td'+rowCount+'">';
                         dy += '<select class="form-control form-control-sm select2" name="client[]" id="noClient'+rowCount+'" style="display: none; max-width: 200px;" required>';
