@@ -153,7 +153,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="<?= base_url('daily/check'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("check"))[0]; ?>">
+                                <a href="<?= base_url('daily/check'); ?>" class="nav-link <?php menu($this->uri->segment(2),array("check","show"))[0]; ?>">
                                     <i class="nav-icon fa fa-circle-o"></i>
                                     <p>
                                         Daily Check

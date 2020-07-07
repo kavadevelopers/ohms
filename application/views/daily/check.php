@@ -73,14 +73,15 @@
                                     <th class="text-center">Date</th>
                                     <th class="text-center">Type</th>
                                     <th class="text-center">Chalan/Invoice</th>
-                                    <th class="text-center">Client</th>
+                                    <th class="">Client</th>
                                     <th class="text-right">Amount</th>
                                     <th class="">Remarks</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             	<?php foreach ($result as $key => $value) { ?>
-                            		<tr>
+                            		<tr id="tr-<?= $value['id'] ?>">
 	                            		<td class="text-center"><?= vd($value['date']) ?></td>
 	                            		<td class="text-center">
 	                            			<?php 
@@ -121,6 +122,14 @@
 	                            		<td>
 	                            			<?= nl2br($value['remarks']) ?>
 	                            		</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger btn-sm remove-daily" type="button" data-id="<?= $value['id'] ?>" id="rem<?= $value['id'] ?>">
+                                                <i class="fa fa-trash" id="trash-<?= $value['id'] ?>"></i>
+                                                <span id="trash-progress-<?= $value['id'] ?>" style="display: none;">
+                                                    <i class="fa fa-circle-o-notch fa-spin"></i> Please Wait
+                                                </span>
+                                            </button>
+                                        </td>
 	                            	</tr>	
                             	<?php } ?>
                             </tbody>
@@ -132,3 +141,35 @@
  	</div>
 </section>
 <?php } ?>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('.remove-daily').click(function() {
+            if(confirm('are you sure you want to delete this?')){
+                var id = $(this).data('id');
+                var type = '<?= $type ?>';
+                $.ajax({
+                    type : "post",
+                    url : "<?php echo site_url('daily/delete'); ?>",
+                    data : "id="+id+"&type="+type,
+                    beforeSend: function() {
+                        $('#trash-'+id).hide();     
+                        $('#trash-progress-'+id).show();     
+                        $('#rem'+id).attr('disabled',true);
+                    },
+                    success:function( out ){    
+                        $('#tr-'+id).remove();
+                        $.notify({
+                            title: '<strong></strong>',
+                            icon: 'fa fa-check',
+                            message: 'Daily Deleted'
+                        },{
+                            type: 'success'
+                        });  
+                    }
+                });
+            }
+        });
+    })
+</script>

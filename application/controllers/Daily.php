@@ -231,4 +231,41 @@ class Daily extends CI_Controller {
         $data['_title']     = 'Daily Check Show';
         $this->load->template('daily/check',$data);
     }
+
+    public function delete()
+    {
+        if($this->input->post('type') == "invoice"){
+
+            $tra = $this->db->get_where('transactions_w',['id' => $this->input->post('id')])->row_array();
+            if($tra['type'] == tsalepay()){
+                $this->db->where('id',$tra['tra_id']);
+                $this->db->delete('sale_payments');
+            }
+
+            if($tra['type'] == tpurchasepay()){
+                $this->db->where('id',$tra['tra_id']);
+                $this->db->delete('purchase_payments');
+            }
+
+            $this->db->where('id',$this->input->post('id'));
+            $this->db->delete('transactions_w');
+
+        }else{
+            $tra = $this->db->get_where('transactions_b',['id' => $this->input->post('id')])->row_array();
+            if($tra['type'] == tsalepay()){
+                $this->db->where('id',$tra['tra_id']);
+                $this->db->delete('sale_payments');
+            }
+
+            if($tra['type'] == tpurchasepay()){
+                $this->db->where('id',$tra['tra_id']);
+                $this->db->delete('purchase_payments');
+            }
+
+            $this->db->where('id',$this->input->post('id'));
+            $this->db->delete('transactions_b');
+        }
+
+        echo "ok";
+    }
 }
