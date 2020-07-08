@@ -48,6 +48,7 @@ class Employees extends CI_Controller {
         $this->form_validation->set_rules('mobile','Mobile','required|is_natural|max_length[10]|min_length[10]');
         $this->form_validation->set_rules('opening','Opening Balance','required|decimal');
         $this->form_validation->set_rules('salary','Salary','required|decimal');
+        $this->form_validation->set_rules('free_minuts','Per day free minutes','required|numeric');
 
 
         
@@ -60,12 +61,13 @@ class Employees extends CI_Controller {
         }
         else{
             $data   =   [   
-                'name'         	=>  strtoupper($this->input->post('name')),
-                'mobile'       	=>  $this->input->post('mobile'),
-                'opening'      	=>  $this->input->post('opening'),
-                'gender'        =>  $this->input->post('gender'),
-                'salary'        =>  $this->input->post('salary'),
-                'created_at'	=>  date('Y-m-d H:i:s')
+                'name'         	    =>  strtoupper($this->input->post('name')),
+                'mobile'       	    =>  $this->input->post('mobile'),
+                'opening'      	    =>  $this->input->post('opening'),
+                'gender'            =>  $this->input->post('gender'),
+                'salary'            =>  $this->input->post('salary'),
+                'free_minuts'       =>  $this->input->post('free_minuts'),
+                'created_at'	    =>  date('Y-m-d H:i:s')
             ];
             if($this->db->insert('employees',$data))
             {
@@ -90,6 +92,7 @@ class Employees extends CI_Controller {
         $this->form_validation->set_rules('gender','Gender','required');
         $this->form_validation->set_rules('salary','Salary','required|decimal');
         $this->form_validation->set_rules('opening','Opening Balance','required|decimal');
+        $this->form_validation->set_rules('free_minuts','Per day free minutes','required|numeric');
         
         if($this->form_validation->run()==FALSE){
             $data['_title']     = 'Employees';
@@ -105,7 +108,8 @@ class Employees extends CI_Controller {
                 'mobile'       	=>  $this->input->post('mobile'),
                 'gender'        =>  $this->input->post('gender'),
                 'salary'        =>  $this->input->post('salary'),
-                'opening'      	=>  $this->input->post('opening')
+                'opening'      	=>  $this->input->post('opening'),
+                'free_minuts'       =>  $this->input->post('free_minuts')
             ];
             $this->db->where('id',$this->input->post('id'));
             if($this->db->update('employees',$data))

@@ -24,13 +24,13 @@ function dd($date)
     return date('Y-m-d',strtotime($date));
 }
 
-function get_one_day($hours_min){
+function get_one_day($hours_min,$minus){
     if ( strpos( $hours_min, "." ) !== false ) {
         $whole = floor($hours_min); 
         $fraction = $hours_min - $whole;
         $today = ($whole * 60) + ($fraction * 100);
-        if($today > 10){
-            return $today - 10;
+        if($today > $minus){
+            return $today - $minus;
         }
         else{
             return $today;
@@ -38,8 +38,8 @@ function get_one_day($hours_min){
     }
     else{
         $today = $hours_min * 60;
-        if($today > 10){
-            return $today - 10;
+        if($today > $minus){
+            return $today - $minus;
         }
         else{
             return $today;

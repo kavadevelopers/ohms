@@ -20,7 +20,7 @@ class Salary extends CI_Controller {
     public function attendance_save()
     {
         foreach ($this->input->post('date') as $key => $value) {
-            $per_day_salary = get_one_day($this->input->post('minute')[$key]) * $this->general_model->per_min_salary($this->input->post('empid')[$key]);
+            $per_day_salary = get_one_day($this->input->post('minute')[$key],$this->input->post('perdayminus')[$key]) * $this->general_model->per_min_salary($this->input->post('empid')[$key]);
             $this->db->where('date',$this->input->post('date')[$key]);
             $this->db->where('emp_id',$this->input->post('empid')[$key]);
             $salary = $this->db->get('salary')->num_rows();

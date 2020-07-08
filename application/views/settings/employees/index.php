@@ -59,6 +59,14 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label>Per day free minutes<span class="astrick">*</span></label>
+                                    <input class="form-control form-control-sm numbers" type="text" name="free_minuts" placeholder="Per day free minutes" value="<?= set_value('free_minuts') ?>" autocomplete="off" >
+                                    <small><?= form_error('free_minuts'); ?></small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label>Opening Balance<span class="astrick">*</span></label>
                                     <input class="form-control form-control-sm" type="text" name="opening" placeholder="Opening Balance" value="<?= set_value('opening') ?>" autocomplete="off" >
                                     <small><?= form_error('opening'); ?></small>
@@ -111,6 +119,14 @@
                                     <label>Per Minute Salary<span class="astrick">*</span></label>
                                     <input class="form-control form-control-sm" type="text" name="salary" placeholder="Salary" value="<?= set_value('salary',$client['salary']) ?>" autocomplete="off" >
                                     <small><?= form_error('salary'); ?></small>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Per day free minutes<span class="astrick">*</span></label>
+                                    <input class="form-control form-control-sm numbers" type="text" name="free_minuts" placeholder="Per day free minutes" value="<?= set_value('free_minuts',$client['free_minuts']) ?>" autocomplete="off" >
+                                    <small><?= form_error('free_minuts'); ?></small>
                                 </div>
                             </div>
 
