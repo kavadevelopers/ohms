@@ -72,7 +72,7 @@
 	                                        <td class="text-center"><?= vd($value['date']) ?></td>
                                             <td class="text-right">
                                                 <?php if($value['salary'] > 0){ ?>
-                                                    <?= rs().moneyFormatIndia($value['salary'] / get_one_day($value['minute'])) ?>
+                                                    <?= rs().moneyFormatIndia($value['salary'] / get_one_day($value['minute'],$employee['free_minuts'])) ?>
                                                 <?php }else{ ?>
                                                     <?= rs().moneyFormatIndia(0) ?>
                                                 <?php } ?>
