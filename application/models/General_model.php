@@ -209,6 +209,7 @@ class General_model extends CI_Model
 	{
 		$this->db->select_sum('salary');
         $this->db->where('date <', dd($date));
+        $this->db->where('emp_id',$employee);
         $credit = $this->db->get('salary')->row()->salary;
 
 		$this->db->select_sum('credit');
