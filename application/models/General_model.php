@@ -204,6 +204,42 @@ class General_model extends CI_Model
 			return ['d',$debit - $credit];
 		}
 	}
+
+	public function salary_opening($employee,$date)
+	{
+		$this->db->select_sum('salary');
+        $this->db->where('date <', dd($date));
+        $credit = $this->db->get('salary')->row()->salary;
+
+		$this->db->select_sum('credit');
+        $this->db->where('date <', dd($date));
+        $this->db->where('client',$employee);
+        $this->db->where('type',tsalarypay());
+        $wdebit = $this->db->get('transactions_w')->row()->credit; 
+        
+        $this->db->select_sum('credit');
+        $this->db->where('date <', dd($date));
+        $this->db->where('client',$employee);
+        $this->db->where('type',tsalarypay());
+        $bdebit = $this->db->get('transactions_b')->row()->credit;   
+
+        $debit = $wdebit + $bdebit;
+
+        if($credit > $debit){
+			return ['d',$credit - $debit];
+		}
+		else{
+			return ['c',$debit - $credit];
+		}
+	}
+
+	public function salary_from_to($employee,$from,$to)
+	{
+		$this->db->select_sum('salary');
+		$this->db->where('date >=', dd($this->input->post('fdate')));
+        $this->db->where('date <=', dd($this->input->post('tdate')));
+        return $this->db->get('salary')->row()->salary;
+	}
 }
 
 ?>

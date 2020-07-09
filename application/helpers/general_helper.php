@@ -24,6 +24,11 @@ function dd($date)
     return date('Y-m-d',strtotime($date));
 }
 
+function get_month_name($month)
+{
+    return date("F", mktime(0, 0, 0, $month, 10));
+}
+
 function get_one_day($hours_min,$minus){
     if ( strpos( $hours_min, "." ) !== false ) {
         $whole = floor($hours_min); 
@@ -177,6 +182,20 @@ function tledamtc($debit,$credit){
     else{
         return $debit;   
     }
+}
+
+function dateRangeLoop( $first, $last, $step = '+1 day', $format = 'Y-m-d' ) {
+    $dates = [];
+    $current = strtotime( $first );
+    $last = strtotime( $last );
+
+    while( $current <= $last ) {
+
+        $dates[] = date( $format, $current );
+        $current = strtotime( $step, $current );
+    }
+
+    return $dates;
 }
 
 ?>

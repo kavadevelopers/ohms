@@ -48,5 +48,24 @@ class Reports extends CI_Controller {
         $data['client_type']    = $client['type'];
     	$this->load->template('reports/ledger_result',$data);
     }	
+
+    public function salary()
+    {
+        $data['_title']     = 'Salary';
+        $data['months']     = $this->db->order_by('id','desc')->get('months')->result_array();
+        $data['employees']     = $this->db->order_by('id','asc')->get_where('employees',['df' => ''])->result_array();
+        $this->load->template('reports/salary/index',$data);
+    }
+
+    public function salary_reports()
+    {
+        $employee = $this->db->get_where('employees',['id' => $this->input->post('employee')])->row_array();
+        $data['_title']     = $employee['name'].' Salary - ('.vd($this->input->post('fdate'))." to ".vd($this->input->post('tdate')).")";
+        $data['opening']    = $this->general_model->salary_opening($this->input->post('employee'),$this->input->post('fdate'));
+        $data['date']       = $this->input->post('fdate');
+        $data['employee']       = $this->input->post('employee');
+        $data['loop']     = dateRangeLoop($this->input->post('fdate'),$this->input->post('tdate'));
+        $this->load->template('reports/salary/result',$data);
+    }
 }
 ?>

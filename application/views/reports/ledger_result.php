@@ -57,18 +57,18 @@
                                 	<?php } ?>
 
                                 		<tr>
-	                                		<th class="text-right"></td>
-                                            <th class="text-right"></td>
-                                			<th class="text-right"></td>
+	                                		<td class="text-right"></td>
+                                            <td class="text-right"></td>
+                                			<td class="text-right"></td>
 	                                		<td class="text-right"><?= moneyFormatIndia($debit_total) ?></td>
 	                                		<td class="text-right"><?= moneyFormatIndia($credit_total) ?></td>
                                 		</tr>
 
                                 	<?php if($credit_total > $debit_total){ ?>
                                 		<tr>
-                                            <th class="text-right"></td>
-                                			<th class="text-right"></td>
-                                			<th class="text-right">Cr Closing Balance</td>
+                                            <td class="text-right"></td>
+                                			<td class="text-right"></td>
+                                			<td class="text-right">Cr Closing Balance</td>
 	                                		<td class="text-right"><?= moneyFormatIndia($credit_total - $debit_total) ?></td>
                                 			<td class="text-right"></td>
                                 		</tr>
@@ -76,17 +76,17 @@
 
                                 	<?php if($credit_total < $debit_total){ ?>
                                 		<tr>
-                                            <th class="text-right"></td>
-                                			<th class="text-right"></td>
-                                			<th class="text-right">Dr Closing Balance</td>
+                                            <td class="text-right"></td>
+                                			<td class="text-right"></td>
+                                			<td class="text-right">Dr Closing Balance</td>
                                 			<td class="text-right"></td>
 	                                		<td class="text-right"><?= moneyFormatIndia($debit_total - $credit_total) ?></td>
                                 		</tr>
                                 	<?php } ?>
 
 	                            		<tr>
-                                            <th class="text-right"></td>
-	                            			<th class="text-right"></td>
+                                            <td class="text-right"></td>
+	                            			<td class="text-right"></td>
 	                            			<th class="text-right">Total</td>
 	                            			<th class="text-right">
 	                                			<?= max(moneyFormatIndia($debit_total),moneyFormatIndia($credit_total)) ?>

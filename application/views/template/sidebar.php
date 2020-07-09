@@ -313,6 +313,14 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('reports/salary'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("salary","salary_reports"))[0]; ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Salary
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
 
                     </li>
