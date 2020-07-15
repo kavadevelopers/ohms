@@ -20,6 +20,24 @@
     <section class="content">
       	<div class="container-fluid">
       	     <div class="row">
+                <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box bg-info">
+                        <span class="info-box-icon"><i class="fa fa-bookmark"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Invoice Balance</span>
+                            <span class="info-box-number"><?= rs().$this->general_model->get_total_invoice() ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-12">
+                    <div class="info-box bg-warning">
+                        <span class="info-box-icon"><i class="fa fa-bookmark"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Chalan Balance</span>
+                            <span class="info-box-number"><?= rs().$this->general_model->get_total_chalan() ?></span>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
