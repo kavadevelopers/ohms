@@ -189,7 +189,7 @@
                     dy += '<td>';
                         dy += '<input type="text" name="date[]" class="form-control form-control-sm datepicker text-center" placeholder="Date" value="<?= date('d-m-Y'); ?>" autocomplete="off" readonly required>';
                     dy += '</td><td>';
-                        dy += '<select class="form-control form-control-sm" name="type[]" onchange="total()" id="type'+rowCount+'" onchange="which_clients(this.value,'+rowCount+');" required>';
+                        dy += '<select class="form-control form-control-sm" name="type[]" id="type'+rowCount+'" onchange="which_clients(this.value,'+rowCount+');" required>';
                             dy += '<option value="">-- Select Type --</option>';
                             dy += '<option value="1">Sale</option>';
                             dy += '<option value="2">Purchase</option>';
