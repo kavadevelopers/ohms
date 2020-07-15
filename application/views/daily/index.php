@@ -1,5 +1,5 @@
     <title><?=$this->config->config["projectTitle"]?> | <?php echo $_title; ?></title>
-
+    <h6 id="total-amount" style="position: fixed;top: 71px;right: 41px;z-index: 999999;background: #fff;padding: 5px;"></h6>
    	<div class="content-header">
       	<div class="container-fluid">
         	<div class="row mb-2">
@@ -9,6 +9,8 @@
         	</div>
       	</div>
     </div>
+
+    
 
     <section class="content">
         <div class="container-fluid">
@@ -35,7 +37,7 @@
                                                 <input type="text" name="date[]" class="form-control form-control-sm datepicker text-center" placeholder="Date" value="<?= date('d-m-Y'); ?>" autocomplete="off" readonly required>
                                             </td>
                                             <td>
-                                                <select class="form-control form-control-sm" name="type[]" onchange="which_clients(this.value,'1');" required>
+                                                <select class="form-control form-control-sm" id="type1" onchange="total()" name="type[]" onchange="which_clients(this.value,'1');" required>
                                                     <option value="">-- Select Type --</option>
                                                     <option value="1">Sale</option>
                                                     <option value="2">Purchase</option>
@@ -45,7 +47,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <select class="form-control form-control-sm" name="chl_inv[]" required>
+                                                <select class="form-control form-control-sm" id="chin1" onchange="total()" name="chl_inv[]" required>
                                                     <option value="1">Invoice</option>
                                                     <option value="2">Chalan</option>
                                                 </select>
@@ -56,7 +58,7 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" name="amount[]" class="form-control form-control-sm numbers-decimal text-right" value="" autocomplete="off" placeholder="Amount" required>
+                                                <input type="text" name="amount[]" onkeyup="total();" id="amount1" class="form-control form-control-sm numbers-decimal text-right" value="" autocomplete="off" placeholder="Amount" required>
                                             </td>
                                             <td>
                                                 <textarea class="form-control" name="remarks[]" placeholder="Remarks"></textarea>
@@ -186,7 +188,7 @@
                     dy += '<td>';
                         dy += '<input type="text" name="date[]" class="form-control form-control-sm datepicker text-center" placeholder="Date" value="<?= date('d-m-Y'); ?>" autocomplete="off" readonly required>';
                     dy += '</td><td>';
-                        dy += '<select class="form-control form-control-sm" name="type[]" onchange="which_clients(this.value,'+rowCount+');" required>';
+                        dy += '<select class="form-control form-control-sm" name="type[]" onchange="total()" id="type'+rowCount+'" onchange="which_clients(this.value,'+rowCount+');" required>';
                             dy += '<option value="">-- Select Type --</option>';
                             dy += '<option value="1">Sale</option>';
                             dy += '<option value="2">Purchase</option>';
@@ -195,7 +197,7 @@
                             dy += '<option value="5">Loan</option>';
                         dy += '</select>';
                     dy += '</td><td>';
-                        dy += '<select class="form-control form-control-sm" name="chl_inv[]" required>';
+                        dy += '<select class="form-control form-control-sm" id="chin'+rowCount+'" onchange="total()" name="chl_inv[]" required>';
                             dy += '<option value="1">Invoice</option>';
                             dy += '<option value="2">Chalan</option>';
                         dy += '</select>';
@@ -204,7 +206,7 @@
                             dy += '<option value="">-- Select Client --</option>';
                         dy += '</select>';
                     dy += '</td><td>';
-                        dy += '<input type="text" name="amount[]" autocomplete="off" class="form-control form-control-sm numbers-decimal text-right" value="" placeholder="Amount" required>';
+                        dy += '<input type="text" name="amount[]" onkeyup="total();" id="amount'+rowCount+'" autocomplete="off" class="form-control form-control-sm numbers-decimal text-right" value="" placeholder="Amount" required>';
                     dy += '</td><td>';
                         dy += '<textarea class="form-control" name="remarks[]" placeholder="Remarks"></textarea>'
                     dy += '</td><td class="text-center">';
@@ -222,4 +224,39 @@
                 $('#noClient'+rowCount).select2();
             });
         })
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function($) {
+            $('#total-amount').html('Invoice :- <?= $invoice ?> | Chalan :- <?= $chalan ?>');
+        });
+
+        function total(){
+            invoice = parseFloat('<?= $invoice ?>');
+            chalan = parseFloat('<?= $chalan ?>');
+            for(i = 1;i <= $('#tbody-append').children('tr').length; i++){
+                type = $('#type'+i).val();
+                chin = $('#chin'+i).val();
+                amount = parseFloat($('#amount'+i).val());
+                if($('#amount'+i).val() != ""){
+                    if(type != ""){
+                        if(type == 1){
+                            if(chin == 1){
+                                invoice += amount;
+                            }else{
+                                chalan += amount;
+                            }    
+                        }else{
+                            if(chin == 1){
+                                invoice -= amount;
+                            }else{
+                                chalan -= amount;
+                            }    
+                        }
+                    }
+                }
+            }
+            $('#total-amount').html('Invoice :- '+invoice.toFixed(2)+' | Chalan :- '+chalan.toFixed(2));
+        }
     </script>

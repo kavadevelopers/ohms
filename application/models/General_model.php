@@ -241,6 +241,32 @@ class General_model extends CI_Model
         $this->db->where('date <=', dd($this->input->post('tdate')));
         return $this->db->get('salary')->row()->salary;
 	}
+
+	public function get_total_invoice()
+	{
+		$this->db->select_sum('debit');
+		$this->db->from('transactions_w');
+		$sale = $this->db->get()->row()->debit;
+
+		$this->db->select_sum('credit');
+		$this->db->from('transactions_w');
+		$purchase = $this->db->get()->row()->credit;
+
+		return $sale - $purchase;
+	}
+
+	public function get_total_chalan()
+	{
+		$this->db->select_sum('debit');
+		$this->db->from('transactions_b');
+		$sale = $this->db->get()->row()->debit;
+
+		$this->db->select_sum('credit');
+		$this->db->from('transactions_b');
+		$purchase = $this->db->get()->row()->credit;
+
+		return $sale - $purchase;
+	}
 }
 
 ?>

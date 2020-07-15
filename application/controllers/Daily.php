@@ -11,6 +11,8 @@ class Daily extends CI_Controller {
     public function index()
     {
     	$data['_title'] = 'Daily';
+        $data['chalan'] = $this->general_model->get_total_chalan();
+        $data['invoice'] = $this->general_model->get_total_invoice();
     	$this->load->template('daily/index',$data);
     }
 
