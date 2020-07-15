@@ -37,7 +37,7 @@
                                                 <input type="text" name="date[]" class="form-control form-control-sm datepicker text-center" placeholder="Date" value="<?= date('d-m-Y'); ?>" autocomplete="off" readonly required>
                                             </td>
                                             <td>
-                                                <select class="form-control form-control-sm" id="type1" onchange="total()" name="type[]" onchange="which_clients(this.value,'1');" required>
+                                                <select class="form-control form-control-sm" id="type1" name="type[]" onchange="which_clients(this.value,'1');" required>
                                                     <option value="">-- Select Type --</option>
                                                     <option value="1">Sale</option>
                                                     <option value="2">Purchase</option>
@@ -108,6 +108,7 @@
             }else{
                 noClient(id);
             }
+            total();
         }
     </script>
 
