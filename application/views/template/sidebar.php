@@ -321,6 +321,14 @@
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('reports/register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("register","register_result"))[0]; ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Register
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
 
                     </li>

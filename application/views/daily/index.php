@@ -230,7 +230,8 @@
 
     <script type="text/javascript">
         $(document).ready(function($) {
-            $('#total-amount').html('Invoice :- <?= $invoice ?> | Chalan :- <?= $chalan ?>');
+            total();
+            //$('#total-amount').html('Invoice :- <?= $invoice ?> | Chalan :- <?= $chalan ?>');
         });
 
         function total(){
@@ -258,6 +259,6 @@
                     }
                 }
             }
-            $('#total-amount').html('Invoice :- '+invoice.toFixed(2)+' | Chalan :- '+chalan.toFixed(2));
+            $('#total-amount').html('Invoice :- '+moneyFromatIndia(invoice.toFixed(2))+' | Chalan :- '+moneyFromatIndia(chalan.toFixed(2)));
         }
     </script>

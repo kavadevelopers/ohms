@@ -117,7 +117,7 @@
 	                            			?>
 	                            		</td>
 	                            		<td class="text-right">
-	                            			<?= $value['debit'] != 0.00?$value['debit']:$value['credit'] ?>
+	                            			<?= $value['debit'] != 0.00?rs().moneyFormatIndia($value['debit']):rs().moneyFormatIndia($value['credit']) ?>
 	                            		</td>
 	                            		<td>
 	                            			<?= nl2br($value['remarks']) ?>

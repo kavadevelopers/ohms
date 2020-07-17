@@ -267,6 +267,31 @@ class General_model extends CI_Model
 
 		return $sale - $purchase;
 	}
+
+	public function client_total($client,$chin,$type)
+	{
+		$this->db->select_sum('debit');
+		$this->db->select_sum('credit');
+		$this->db->where('client',$client);
+		$this->db->group_start();
+			if($type == 1){
+				$this->db->or_where('type',tsalepay());
+	            $this->db->or_where('type',tsale());
+			}else if($type == 2){
+				$this->db->or_where('type',tpurchase());
+	            $this->db->or_where('type',tpurchasepay());
+			}else if($type == '3'){
+                $this->db->or_where('type',texpensepay());
+            }
+		$this->db->group_end();
+		if($chin == "invoice"){
+            $result       = $this->db->get('transactions_w')->row_array();
+        }else{
+            $result       = $this->db->get('transactions_b')->row_array();
+        }
+
+        return $result;
+	}
 }
 
 ?>

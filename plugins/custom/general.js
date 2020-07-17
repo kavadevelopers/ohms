@@ -25,6 +25,14 @@ $(function(){
 	});
 })
 
+function moneyFromatIndia(amount){
+	return parseFloat(amount).toLocaleString('en-IN', {
+	    maximumFractionDigits: 2,
+	    style: 'currency',
+	    currency: 'INR'
+	});
+}
+
 
     
 

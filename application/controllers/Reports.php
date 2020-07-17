@@ -67,5 +67,48 @@ class Reports extends CI_Controller {
         $data['loop']     = dateRangeLoop($this->input->post('fdate'),$this->input->post('tdate'));
         $this->load->template('reports/salary/result',$data);
     }
+
+    public function register()
+    {
+        $data['_title']     = 'Register | Total';
+        $this->load->template('reports/register/index',$data);
+    }
+
+    public function register_result()
+    {
+        if($this->input->post('chin') != ""){
+            $data['_title']     = 'Register | Total';
+            $data['chin']       = $this->input->post('chin');
+            $data['type']       = $this->input->post('type');
+            if($this->input->post('type') != '4'){
+                $this->db->distinct();
+                $this->db->select('client');
+                $this->db->group_start();
+                if($this->input->post('type') == '1'){
+                    $this->db->or_where('type',tsalepay());
+                    $this->db->or_where('type',tsale());
+                }else if($this->input->post('type') == '2'){
+                    $this->db->or_where('type',tpurchase());
+                    $this->db->or_where('type',tpurchasepay());
+                }else if($this->input->post('type') == '3'){
+                    $this->db->or_where('type',texpensepay());
+                }
+                $this->db->group_end();
+                if($this->input->post('chin') == "invoice"){
+                    $data['result']       = $this->db->get('transactions_w')->result_array();
+                }else{
+                    $data['result']       = $this->db->get('transactions_b')->result_array();
+                }
+            }else{
+                $this->db->select('id AS client');
+                $this->db->where('df','');
+                $data['result']       = $this->db->get('employees')->result_array();
+            }
+
+            $this->load->template('reports/register/index',$data);
+        }else{
+            redirect(base_url('reports/register'));
+        }
+    }
 }
 ?>

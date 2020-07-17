@@ -198,4 +198,13 @@ function dateRangeLoop( $first, $last, $step = '+1 day', $format = 'Y-m-d' ) {
     return $dates;
 }
 
+function amountCreDeb($credit,$debit){
+    $amount = $credit - $debit;
+    if($amount < 0){
+        return [abs($amount),0.00];
+    }else{
+        return [0.00,$amount];
+    }
+}
+
 ?>
