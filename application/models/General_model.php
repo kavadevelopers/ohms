@@ -277,9 +277,11 @@ class General_model extends CI_Model
 			if($type == 1){
 				$this->db->or_where('type',tsalepay());
 	            $this->db->or_where('type',tsale());
+	            $this->db->or_where('type',topening());
 			}else if($type == 2){
 				$this->db->or_where('type',tpurchase());
 	            $this->db->or_where('type',tpurchasepay());
+	            $this->db->or_where('type',topening());
 			}else if($type == '3'){
                 $this->db->or_where('type',texpensepay());
             }
