@@ -68,7 +68,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<?php foreach ($result as $key => $value) { ?>
+                            	<?php $cr = 0;$dr = 0; foreach ($result as $key => $value) { ?>
                             		<?php $amount = $this->general_model->client_total($value['client'],$chin,$type); ?>
                             		<tr>
                             			<td class="text-center"><?= ucfirst($chin) ?></td>
@@ -77,10 +77,17 @@
                             			<?php }else if($type == "3"){ ?>
                             				<td><?= $this->general_model->_expanse_client($value['client'])['name'] ?></td>
                             			<?php } ?>
+                                        <?php $cr += amountCreDeb($amount['credit'],$amount['debit'])[0];$dr += amountCreDeb($amount['credit'],$amount['debit'])[1]; ?>
                             			<td class="text-right"><?= rs().moneyFormatIndia(amountCreDeb($amount['credit'],$amount['debit'])[0]) ?></td>
                             			<td class="text-right"><?= rs().moneyFormatIndia(amountCreDeb($amount['credit'],$amount['debit'])[1]) ?></td>
                             		</tr>
                             	<?php } ?>
+                                    <tr>
+                                        <th></th>
+                                        <th class="text-right">Total - </th>
+                                        <th class="text-right"><?= rs().moneyFormatIndia($cr) ?></th>
+                                        <th class="text-right"><?= rs().moneyFormatIndia($dr) ?></th>
+                                    </tr>
                             </tbody>
                         </table>
                 	</div>
@@ -107,9 +114,10 @@
                 { 
                     extend: 'pdf',
                     title: '<?= $_title ?>',
+                    pageSize : 'A4',
                     exportOptions: {
                         columns: [0,1,2,3]
-                    }
+                    },
                 },
                 { 
                     extend: 'excel',

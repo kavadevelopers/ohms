@@ -116,21 +116,21 @@
                     extend: 'print',
                     title: '<?= $_title ?>',
                     exportOptions: {
-                        columns: [0,1,2,3]
+                        columns: [0,1,2,3,4]
                     }
                 },
                 { 
                     extend: 'pdf',
                     title: '<?= $_title ?>',
                     exportOptions: {
-                        columns: [0,1,2,3]
+                        columns: [0,1,2,3,4]
                     }
                 },
                 { 
                     extend: 'excel',
                     title: '<?= $_title ?>',
                     exportOptions: {
-                        columns: [0,1,2,3]
+                        columns: [0,1,2,3,4]
                     }
                 }
                 
