@@ -51,32 +51,7 @@
                 url:"<?php echo base_url() . 'purchase/get_purchase'; ?>",  
                 type:"POST"  
            },
-           "dom": "<'row'<'col-md-12 my-marD'B>><'row'<'col-md-6'l>><'row'<'col-md-12'tr>><'row'<'col-md-6'i><'col-md-6'p>>",
-           buttons: [ 
-                { 
-                    extend: 'print',
-                    title: '<?= $_title ?>',
-                    exportOptions: {
-                        columns: [0,1,2,3,4,5]
-                    }
-                },
-                { 
-                    extend: 'pdf',
-                    title: '<?= $_title ?>',
-                    exportOptions: {
-
-                        columns: [0,1,2,3,4,5]
-                    }
-                },
-                { 
-                    extend: 'excel',
-                    title: '<?= $_title ?>',
-                    exportOptions: {
-                        columns: [0,1,2,3,4,5]
-                    }
-                }
-                
-            ],
+           "dom": "<'row'<'col-md-6'l>><'row'<'col-md-12'tr>><'row'<'col-md-6'i><'col-md-6'p>>",
             order : [],
             "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
             "columnDefs": [
