@@ -51,7 +51,7 @@
                 url:"<?php echo base_url() . 'sales/get_sales'; ?>",  
                 type:"POST"  
            },
-           "dom": "<'row'<'col-md-12 my-marD'B>><'row'<'col-md-6'l>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+           "dom": "<'row'<'col-md-12 my-marD'B>><'row'<'col-md-6'l>><'row'<'col-md-12'tr>><'row'<'col-md-6'i><'col-md-6'p>>",
            buttons: [ 
                 { 
                     extend: 'print',
