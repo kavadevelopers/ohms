@@ -11,7 +11,7 @@
 	                			<h3 class="card-title"><?=  $_title; ?></h3>	
 	                		</div>
 	                		<div class="col-md-6 text-right">
-	                			<a href="<?= base_url('salespayments/add') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add</a>
+	                			<!-- <a href="<?= base_url('salespayments/add') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add</a> -->
 	                		</div>
                 		</div>
               		</div>
@@ -44,11 +44,12 @@
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
             }, 
            "serverSide":true, 
+           "paging": false,
            "ajax":{  
                 url:"<?php echo base_url() . 'salespayments/get_payments'; ?>",  
                 type:"POST"  
            },
-           "dom": "<'row'<'col-md-12 my-marD'B>><'row'<'col-md-6'l>><'row'<'col-md-12't>><'row'<'col-md-6'i><'col-md-6'p>>",
+           "dom": "<'row'<'col-md-12 my-marD'B>><'row'<'col-md-6'l>><'row'<'col-md-12'tr>><'row'<'col-md-6'i><'col-md-6'p>>",
            buttons: [ 
                 { 
                     extend: 'print',
