@@ -29,26 +29,69 @@ function get_month_name($month)
     return date("F", mktime(0, 0, 0, $month, 10));
 }
 
-function get_one_day($hours_min,$minus){
-    if ( strpos( $hours_min, "." ) !== false ) {
-        $whole = floor($hours_min); 
-        $fraction = $hours_min - $whole;
-        $today = ($whole * 60) + ($fraction * 100);
-        if($today > $minus){
-            return $today - $minus;
+function getMinute($from,$to,$date){
+    $to_time = strtotime($date." ".timeConverter($from));
+    $from_time = strtotime($date." ".timeConverter($to));
+    return round(abs($to_time - $from_time) / 60,2);
+}
+
+function timeConverter($str){
+    $arr = explode(":", $str);
+    $new = "";
+    foreach ($arr as $key => $value) {
+        if($key != 0){
+            $c = ":";
+        }else{
+            $c = "";
         }
-        else{
-            return $today;
+        $value = trim($value,"_");
+        if($value != ""){
+            if(strlen($value) == 2){
+                $new .= $c.$value;
+            }else{
+                $new .= $c."0".$value;
+            }
+        }else{
+            $new .= $c."00";
         }
     }
+    return dt($new);
+}
+
+function dt($time){
+    return date('H:i:s',strtotime($time));   
+}
+
+// function get_one_day($hours_min,$minus){
+//     if ( strpos( $hours_min, "." ) !== false ) {
+//         $whole = floor($hours_min); 
+//         $fraction = $hours_min - $whole;
+//         $today = ($whole * 60) + ($fraction * 100);
+//         if($today > $minus){
+//             return $today - $minus;
+//         }
+//         else{
+//             return $today;
+//         }
+//     }
+//     else{
+//         $today = $hours_min * 60;
+//         if($today > $minus){
+//             return $today - $minus;
+//         }
+//         else{
+//             return $today;
+//         }
+//     }
+// }   
+
+function get_one_day($hours_min,$minus){
+    $today = $hours_min;
+    if($today > $minus){
+        return $today - $minus;
+    }
     else{
-        $today = $hours_min * 60;
-        if($today > $minus){
-            return $today - $minus;
-        }
-        else{
-            return $today;
-        }
+        return $today;
     }
 }   
 

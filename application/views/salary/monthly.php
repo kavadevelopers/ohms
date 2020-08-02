@@ -77,7 +77,7 @@
                                                     <?= rs().moneyFormatIndia(0) ?>
                                                 <?php } ?>
                                             </td>
-                                            <td class="text-center"><?= $value['minute'] ?></td>
+                                            <td class="text-center"><?= $value['minute'] / 60 ?>(<?= $value['minute'] ?>)</td>
                                             <td class="text-right">
                                                 <?= rs().moneyFormatIndia($value['salary']) ?>        
                                             </td>
@@ -87,7 +87,7 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="2" class="text-right">Total : </th>
-                                        <th class="text-center"><?= $Tmin ?></th>
+                                        <th class="text-center"><?= $Tmin / 60 ?>(<?= $Tmin ?>)</th>
                                         <th class="text-right"><?= rs().moneyFormatIndia($Tsalary) ?></th>
                                     </tr>
                                 </tfoot>

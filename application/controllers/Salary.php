@@ -12,30 +12,36 @@ class Salary extends CI_Controller {
     {
         $data['_title'] = 'Attendance Sheet';
                             $this->db->order_by('id','desc');
-                            $this->db->limit(200);
+                            $this->db->limit(60);
+                            $this->db->where('date >',date('2020-06-30'));
         $data['days']   =   $this->db->get('days')->result_array();
         $this->load->template('salary/sheet',$data);
     }
 
     public function attendance_save()
     {
-        foreach ($this->input->post('date') as $key => $value) {
-            $per_day_salary = get_one_day($this->input->post('minute')[$key],$this->input->post('perdayminus')[$key]) * $this->general_model->per_min_salary($this->input->post('empid')[$key]);
+        foreach ($this->input->post('date') as $key => $value) {    
+
+            $minut = getMinute($this->input->post('from')[$key],$this->input->post('to')[$key],$this->input->post('date')[$key]);
+
+            $per_day_salary = get_one_day($minut,$this->input->post('perdayminus')[$key]) * $this->general_model->per_min_salary($this->input->post('empid')[$key]);
             $this->db->where('date',$this->input->post('date')[$key]);
             $this->db->where('emp_id',$this->input->post('empid')[$key]);
             $salary = $this->db->get('salary')->num_rows();
             if($salary > 0){
                 $this->db->where('date',$this->input->post('date')[$key]);
                 $this->db->where('emp_id',$this->input->post('empid')[$key]);
-                $this->db->update('salary',['minute' => $this->input->post('minute')[$key],'salary' => $per_day_salary]);
+                $this->db->update('salary',['minute' => $minut,'salary' => $per_day_salary,'from' => timeConverter($this->input->post('from')[$key]) , 'to' => timeConverter($this->input->post('to')[$key])]);
             }else{
                 $this->db->where('date',$this->input->post('date')[$key]);
                 $this->db->where('emp_id',$this->input->post('empid')[$key]);
                 $data = [
                     'date'   => $this->input->post('date')[$key],
                     'emp_id' => $this->input->post('empid')[$key],
-                    'minute' => $this->input->post('minute')[$key],
-                    'salary' => $per_day_salary
+                    'minute' => $minut,
+                    'salary' => $per_day_salary,
+                    'from' => timeConverter($this->input->post('from')[$key]) ,
+                    'to' => timeConverter($this->input->post('to')[$key])
                 ];
                 $this->db->insert('salary',$data);
             }
