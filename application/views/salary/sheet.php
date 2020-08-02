@@ -91,7 +91,6 @@
                                     </div>
                                     <input type="hidden" name="date[]" value="<?= $day['date'] ?>">
                                     <input type="hidden" name="empid[]" value="<?= $male['id'] ?>">
-                                    <input type="hidden" name="empid[]" value="<?= $male['id'] ?>">
                                     <input type="hidden" name="perdayminus[]" value="<?= $male['free_minuts'] ?>">
                                   <?php } ?>
                                 </div>
