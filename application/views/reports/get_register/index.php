@@ -93,19 +93,13 @@
                                         <td class="text-center"><?= vd($value['date']) ?></td>
                                         <td class="text-center">
                                             <?php if($type == '1'){ ?>
-                                                <?php $sale = $this->db->get_where('sales',['id' => $value['tra_id']])->row_array(); ?>
-                                                <?php if($chin == 'invoice'){ ?>
-                                                    <?= $sale['invoice'] ?>
-                                                <?php }else{ ?>
-                                                    <?= $sale['chalan'] ?>
-                                                <?php } ?>
+                                                <a href="<?= base_url('sales/edit/').$value['tra_id'] ?>" target="_blank">
+                                                    <?= $this->general_model->getRegisterInvoice($type,$chin,$value['tra_id']); ?>
+                                                </a>
                                             <?php }else{ ?>
-                                                <?php $purchase = $this->db->get_where('purchase',['id' => $value['tra_id']])->row_array(); ?>
-                                                <?php if($chin == 'invoice'){ ?>
-                                                    <?= $purchase['invoice'] ?>
-                                                <?php }else{ ?>
-                                                    <?= $purchase['chalan'] ?>
-                                                <?php } ?>
+                                                <a href="<?= base_url('purchase/edit/').$value['tra_id'] ?>" target="_blank">
+                                                    <?= $this->general_model->getRegisterInvoice($type,$chin,$value['tra_id']); ?>
+                                                </a>
                                             <?php } ?>
                                         </td>
                                         <td><?= $this->general_model->_client($value['client'])['name'] ?></td>

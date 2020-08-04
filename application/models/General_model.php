@@ -343,6 +343,25 @@ class General_model extends CI_Model
             }
         }
 	}
+
+	public function getRegisterInvoice($type,$chin,$main_id)
+	{
+		if($type == '1'){
+            $sale = $this->db->get_where('sales',['id' => $main_id])->row_array();
+            if($chin == 'invoice'){
+                return $sale['invoice'];
+            }else{
+                return $sale['chalan'];
+            }
+        }else{
+            $purchase = $this->db->get_where('purchase',['id' => $main_id])->row_array();
+            if($chin == 'invoice'){
+                return $purchase['invoice'];
+            }else{
+                return $purchase['chalan'];
+            }
+        }
+	}
 }
 
 ?>
