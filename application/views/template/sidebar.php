@@ -322,10 +322,18 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('reports/register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("register","register_result"))[0]; ?>">
+                                <a href="<?= base_url('reports/get_register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("get_register","register_result"))[0]; ?>">
                                     <i class="nav-icon fa fa-circle-o"></i>
                                     <p>
                                         Register
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('reports/register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("register","get_register_result"))[0]; ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Total Till Today
                                     </p>
                                 </a>
                             </li>

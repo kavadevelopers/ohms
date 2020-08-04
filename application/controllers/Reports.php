@@ -70,14 +70,14 @@ class Reports extends CI_Controller {
 
     public function register()
     {
-        $data['_title']     = 'Register | Total';
+        $data['_title']     = 'Total Till Today';
         $this->load->template('reports/register/index',$data);
     }
 
     public function register_result()
     {
         if($this->input->post('chin') != ""){
-            $data['_title']     = 'Register | Total';
+            $data['_title']     = 'Total Till Today';
             $data['chin']       = $this->input->post('chin');
             $data['type']       = $this->input->post('type');
             if($this->input->post('type') != '4'){
@@ -109,6 +109,40 @@ class Reports extends CI_Controller {
         }else{
             redirect(base_url('reports/register'));
         }
+    }
+
+    public function get_register()
+    {
+        $data['_title']     = 'Register';
+        $data['fdate']      = date('01-m-Y');
+        $data['tdate']      = date('t-m-Y');
+        $data['chin']       = "";
+        $data['type']       = "";
+        $this->load->template('reports/get_register/index',$data);
+    }
+
+    public function get_register_result()
+    {
+        $data['_title']     = 'Register';
+        $data['fdate']      = $this->input->post('fdate');
+        $data['tdate']      = $this->input->post('tdate');
+        $data['chin']       = $this->input->post('chin');
+        $data['type']       = $this->input->post('type');
+        $this->db->order_by('date','asc');
+        $this->db->where('date >=', dd($this->input->post('fdate')));
+        $this->db->where('date <=', dd($this->input->post('tdate')));
+        $this->db->where('type',$this->input->post('type'));
+        if($this->input->post('type') == '1'){
+            $this->db->where('credit !=','0.00');
+        }else{
+            $this->db->where('debit !=','0.00');
+        }
+        if($this->input->post('chin') == 'invoice'){
+            $data['result']       = $this->db->get('transactions_w')->result_array();
+        }else{
+            $data['result']       = $this->db->get('transactions_b')->result_array();
+        }
+        $this->load->template('reports/get_register/index',$data);
     }
 }
 ?>

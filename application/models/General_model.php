@@ -294,6 +294,55 @@ class General_model extends CI_Model
 
         return $result;
 	}
+
+
+
+	public function getRegisterTotal($type,$chin,$main_id)
+	{
+		if($type == '1'){
+	        $sale = $this->db->get_where('sales',['id' => $main_id])->row_array();
+	        if($chin == 'invoice'){
+	            return $sale['net_invoice'];
+	        }else{
+	            return $sale['challan_total'];
+	        }
+	    }else{
+	        $purchase = $this->db->get_where('purchase',['id' => $main_id])->row_array();
+	        if($chin == 'invoice'){
+	            return $purchase['net_invoice'];
+	        }else{
+	            return $purchase['challan_total'];
+	        }
+	    }
+	}
+
+	public function getRegisterTax($type,$chin,$main_id){
+		if($type == '1'){
+            $sale = $this->db->get_where('sales',['id' => $main_id])->row_array();
+            return $sale['tax_total'];
+        }else{
+            $purchase = $this->db->get_where('purchase',['id' => $main_id])->row_array();
+            return $purchase['tax_total'];
+        }
+	}
+
+	public function getRegisterGross($type,$chin,$main_id){
+		if($type == '1'){
+            $sale = $this->db->get_where('sales',['id' => $main_id])->row_array();
+            if($chin == 'invoice'){
+                return $sale['invoice_total'];
+            }else{
+                return $sale['challan_total'];
+            }
+        }else{
+            $purchase = $this->db->get_where('purchase',['id' => $main_id])->row_array();
+            if($chin == 'invoice'){
+                return $purchase['invoice_total'];
+            }else{
+                return $purchase['challan_total'];
+            }
+        }
+	}
 }
 
 ?>
