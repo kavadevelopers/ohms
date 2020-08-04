@@ -55,7 +55,14 @@ function timeConverter($str){
             $new .= $c."00";
         }
     }
-    return dt($new);
+
+    if(count($arr) == 1){
+        return dt($new.":00:00");
+    }else if(count($arr) == 2){
+        return dt($new.":00");
+    }else{
+        return dt($new);    
+    }
 }
 
 function dt($time){
