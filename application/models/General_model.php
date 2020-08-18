@@ -245,10 +245,12 @@ class General_model extends CI_Model
 	public function get_total_invoice()
 	{
 		$this->db->select_sum('debit');
+		$this->db->where_in('type',[2,4,6,7]);
 		$this->db->from('transactions_w');
 		$sale = $this->db->get()->row()->debit;
 
 		$this->db->select_sum('credit');
+		$this->db->where_in('type',[2,4,6,7]);
 		$this->db->from('transactions_w');
 		$purchase = $this->db->get()->row()->credit;
 
@@ -258,10 +260,12 @@ class General_model extends CI_Model
 	public function get_total_chalan()
 	{
 		$this->db->select_sum('debit');
+		$this->db->where_in('type',[2,4,6,7]);
 		$this->db->from('transactions_b');
 		$sale = $this->db->get()->row()->debit;
 
 		$this->db->select_sum('credit');
+		$this->db->where_in('type',[2,4,6,7]);
 		$this->db->from('transactions_b');
 		$purchase = $this->db->get()->row()->credit;
 
