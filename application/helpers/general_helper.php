@@ -154,6 +154,14 @@ function tloanpay(){
     return 8;
 }
 
+function tsalereturn(){
+    return 9;
+}
+
+function tpurchasereturn(){
+    return 10;
+}
+
 function typestring($type){
     if($type == 1){
         return "Sales";
@@ -166,6 +174,12 @@ function typestring($type){
     }
     else if($type == 5){
         return "Opening";
+    }
+    else if($type == 9){
+        return "Sales Return";
+    }
+    else if($type == 10){
+        return "Purchase Return";
     }
     else{
         return "-";
@@ -191,6 +205,24 @@ function vch_no($type,$tra_id,$tra_type)
         }else{
             $invoice = $CI->db->get_where('purchase',['id' => $tra_id])->result_array()[0];
             return '<a href="'.base_url('purchase/edit/').$invoice['id'].'" target="_blank">'.$invoice['chalan'].'</a>';
+        }
+    }else if($type == 9){
+        $CI =& get_instance();
+        if($tra_type == 'w'){
+            $invoice = $CI->db->get_where('salesreturn',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('salesreturn/edit/').$invoice['id'].'" target="_blank">'.$invoice['invoice'].'</a>';
+        }else{
+            $invoice = $CI->db->get_where('salesreturn',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('salesreturn/edit/').$invoice['id'].'" target="_blank">'.$invoice['chalan'].'</a>';
+        }
+    }else if($type == 10){
+        $CI =& get_instance();
+        if($tra_type == 'w'){
+            $invoice = $CI->db->get_where('purchasereturn',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('purchasereturn/edit/').$invoice['id'].'" target="_blank">'.$invoice['invoice'].'</a>';
+        }else{
+            $invoice = $CI->db->get_where('purchasereturn',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('purchasereturn/edit/').$invoice['id'].'" target="_blank">'.$invoice['chalan'].'</a>';
         }
     }
     else{

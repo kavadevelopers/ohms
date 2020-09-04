@@ -4,7 +4,7 @@ class Purchase_model extends CI_Model
 {
 	public $table = "purchase";  
 	public $select_column = array("id","client_id", "invoice","chalan","challan_total" ,"invoice_total","tax_total","net_invoice","date","desc");  
-	public $order_column = array(null,"id","client_id", "invoice","chalan","challan_total" ,"invoice_total","tax_total","net_invoice","date","desc",null);
+	public $order_column = array("date","invoice");
 
 	public function __construct()
 	{
@@ -27,7 +27,6 @@ class Purchase_model extends CI_Model
 	{  
 		$this->db->select($this->select_column);  
 		$this->db->from($this->table); 
-		$this->db->order_by('date','desc');
 		if(isset($_POST["search"]["value"]))  
 		{  
 			// $this->db->group_start();
@@ -50,7 +49,7 @@ class Purchase_model extends CI_Model
 		}  
 		else  
 		{  
-		    $this->db->order_by('id', 'DESC');  
+		    $this->db->order_by('date', 'DESC');  
 		}  
 	} 
 

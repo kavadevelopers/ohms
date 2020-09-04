@@ -11,13 +11,13 @@
 	                			<h3 class="card-title"><?=  $_title; ?></h3>	
 	                		</div>
 	                		<div class="col-md-6 text-right">
-	                			<a href="<?= base_url('sales/add') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add</a>
+	                			<a href="<?= base_url('purchasereturn/add') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add</a>
 	                		</div>
                 		</div>
               		</div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-sm" id="sales">
+                            <table class="table table-bordered table-striped table-sm" id="purchase">
                                 <thead>
                                     <tr>
                                         <th>Date</th>
@@ -40,7 +40,7 @@
 
 <script type="text/javascript" language="javascript" >  
  $(function(){ 
-    $('#sales').DataTable({
+    $('#purchase').DataTable({
          "processing":true, 
             "language": {
                 processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>'
@@ -48,8 +48,8 @@
            "serverSide":true, 
            "paging": false,
            "ajax":{  
-                url:"<?php echo base_url() . 'sales/get_sales'; ?>",  
-                type:"POST" 
+                url:"<?php echo base_url() . 'purchasereturn/get_purchase'; ?>",  
+                type:"POST"  
            },
            "dom": "<'row'<'col-md-6'l>><'row'<'col-md-12'tr>><'row'<'col-md-6'i><'col-md-6'p>>",
             order : [],

@@ -69,7 +69,7 @@
                                                     <select class="form-control form-control-sm select2" onchange="_prod_price('1');" name="product[]" id="product1" required>
                                                         <option value="">-- Select Product --</option>
                                                         <?php foreach ($products as $key => $product) { ?>
-                                                            <option value="<?= $product['id'] ?>"><?= $product['name'] ?></option>
+                                                            <option value="<?= $product['id'] ?>" data-tax="<?= $product['tax'] ?>"><?= $product['name'] ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </td>
@@ -90,6 +90,7 @@
                                                 </td>
                                                 <td>
                                                     <input type="text" name="tax[]" class="form-control form-control-sm" value="0" placeholder="Tax" id="prodtax1" readonly>
+                                                    <input type="hidden" name="" id="taxPer1">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -180,9 +181,11 @@
                             $("#prodprice"+id).val(json[index].price);
                         }
                     });
+                    $("#taxPer"+id).val($("#product"+id+" option:selected").data('tax'));
                 }
                 else{
                     $("#prodprice"+id).val(0.00);
+                    $("#taxPer"+id).val(0.00);
                 }
             });
         }
@@ -201,9 +204,11 @@
                             $("#prodprice"+id).val(json[index].price);
                         }
                     });
+                    $("#taxPer"+id).val($("#product"+id+" option:selected").data('tax'));
                 }
                 else{
                     $("#prodprice"+id).val(0.00);
+                    $("#taxPer"+id).val(0.00);
                 }
             });
         }
@@ -219,12 +224,15 @@
             var price = $("#prodprice"+id).val();
             var challan = $("#challanqty"+id).val();
             var invoice = $("#invoiceqty"+id).val();
+            var taxPer = $("#taxPer"+id).val();
             if(price == ""){ price = 0; }else{ price = parseFloat(price); }
             if(challan == ""){ challan = 0; }else{ challan = parseFloat(challan); }
             if(invoice == ""){ invoice = 0; }else{ invoice = parseFloat(invoice); }
+            if(taxPer == ""){ taxPer = 0; }else{ taxPer = parseFloat(taxPer); }
+
             var challan_price = (challan * price).toFixed(2);
             var invoice_price = (invoice * price).toFixed(2);
-            var tax = ((invoice_price * 18) / 100).toFixed(2);
+            var tax = ((invoice_price * taxPer) / 100).toFixed(2);
 
             $("#prodchalantotal"+id).val(challan_price);
             $("#prodinvoicetotal"+id).val(invoice_price);
@@ -249,7 +257,7 @@
                     tr_string += '<select class="form-control form-control-sm select2" onchange="_prod_price('+last_id+');" name="product[]" id="product'+last_id+'" required>';
                         tr_string += '<option value="">-- Select Product --</option>';
                         <?php foreach ($products as $key => $product) { ?>
-                            tr_string += '<option value="<?= $product['id'] ?>"><?= $product['name'] ?></option>';
+                            tr_string += '<option value="<?= $product['id'] ?>" data-tax="<?= $product['tax'] ?>"><?= $product['name'] ?></option>';
                         <?php } ?>
                     tr_string += '</select>';
                 tr_string += '</td>';
@@ -269,7 +277,7 @@
                     tr_string += '<input type="text" name="invoice_price[]" class="form-control form-control-sm" value="0" placeholder="Invoice Price" id="prodinvoicetotal'+last_id+'" readonly>';
                 tr_string += '</td>';
                 tr_string += '<td>';
-                    tr_string += '<input type="text" name="tax[]" class="form-control form-control-sm" value="0" placeholder="Tax" id="prodtax'+last_id+'" readonly>';
+                    tr_string += '<input type="text" name="tax[]" class="form-control form-control-sm" value="0" placeholder="Tax" id="prodtax'+last_id+'" readonly><input type="hidden" name="" id="taxPer'+last_id+'">';
                 tr_string += '</td>';
             tr_string += '</tr>';
             $('#product-table tbody').append(tr_string);

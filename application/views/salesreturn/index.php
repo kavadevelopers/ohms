@@ -11,7 +11,7 @@
 	                			<h3 class="card-title"><?=  $_title; ?></h3>	
 	                		</div>
 	                		<div class="col-md-6 text-right">
-	                			<a href="<?= base_url('sales/add') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add</a>
+	                			<a href="<?= base_url('salesreturn/add') ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add</a>
 	                		</div>
                 		</div>
               		</div>
@@ -48,7 +48,7 @@
            "serverSide":true, 
            "paging": false,
            "ajax":{  
-                url:"<?php echo base_url() . 'sales/get_sales'; ?>",  
+                url:"<?php echo base_url() . 'salesreturn/get_sales'; ?>",  
                 type:"POST" 
            },
            "dom": "<'row'<'col-md-6'l>><'row'<'col-md-12'tr>><'row'<'col-md-6'i><'col-md-6'p>>",

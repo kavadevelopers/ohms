@@ -125,6 +125,8 @@ class General_model extends CI_Model
 		            	->or_where('type',tsalepay())
 		            	->or_where('type',tpurchase())
 		            	->or_where('type',tpurchasepay())
+		            	 ->or_where('type',tsalereturn())
+            			->or_where('type',tpurchasereturn())
 					->group_end()->get();
 		$credit = $query->row()->credit;
 
@@ -137,6 +139,8 @@ class General_model extends CI_Model
 		            	->or_where('type',tsalepay())
 		            	->or_where('type',tpurchase())
 		            	->or_where('type',tpurchasepay())
+		            	->or_where('type',tsalereturn())
+            			->or_where('type',tpurchasereturn())
 					->group_end()->get();
 		$debit = $query->row()->debit;
 
@@ -179,6 +183,8 @@ class General_model extends CI_Model
 		            	->or_where('type',tsalepay())
 		            	->or_where('type',tpurchase())
 		            	->or_where('type',tpurchasepay())
+		            	->or_where('type',tsalereturn())
+            			->or_where('type',tpurchasereturn())
 					->group_end()->get();
 		$credit = $query->row()->credit;
 
@@ -191,6 +197,8 @@ class General_model extends CI_Model
 		            	->or_where('type',tsalepay())
 		            	->or_where('type',tpurchase())
 		            	->or_where('type',tpurchasepay())
+		            	->or_where('type',tsalereturn())
+            			->or_where('type',tpurchasereturn())
 					->group_end()->get();
 		$debit = $query->row()->debit;
 
@@ -207,6 +215,9 @@ class General_model extends CI_Model
 
 	public function salary_opening($employee,$date)
 	{
+
+		$opening = $this->db->get_where('employees',['id' => $employee])->row_array();
+
 		$this->db->select_sum('salary');
         $this->db->where('date <', dd($date));
         $this->db->where('emp_id',$employee);
@@ -225,6 +236,12 @@ class General_model extends CI_Model
         $bdebit = $this->db->get('transactions_b')->row()->credit;   
 
         $debit = $wdebit + $bdebit;
+
+        if (floatval($opening['opening']) > 0) {
+        	$credit += $opening['opening'];
+        }else{
+        	$debit += abs($opening['opening']);
+        }
 
         if($credit > $debit){
 			return ['d',$credit - $debit];
@@ -282,10 +299,12 @@ class General_model extends CI_Model
 				$this->db->or_where('type',tsalepay());
 	            $this->db->or_where('type',tsale());
 	            $this->db->or_where('type',topening());
+	            $this->db->or_where('type',tsalereturn());
 			}else if($type == 2){
 				$this->db->or_where('type',tpurchase());
 	            $this->db->or_where('type',tpurchasepay());
 	            $this->db->or_where('type',topening());
+	            $this->db->or_where('type',tpurchasereturn());
 			}else if($type == '3'){
                 $this->db->or_where('type',texpensepay());
             }

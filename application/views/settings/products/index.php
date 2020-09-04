@@ -47,6 +47,20 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tax<span class="astrick">*</span></label>
+                                    <select class="form-control form-control-sm" name="gst_amount">
+                                        <option value="">-- Select Tax --</option>
+                                        <option value="5" <?= set_value('gst_amount') == "5"?'selected':''; ?>>5%</option>
+                                        <option value="12" <?= set_value('gst_amount') == "12"?'selected':''; ?>>12%</option>
+                                        <option value="18" <?= set_value('gst_amount','18') == "18"?'selected':''; ?>>18%</option>
+                                        <option value="28" <?= set_value('gst_amount') == "28"?'selected':''; ?>>28%</option>
+                                    </select>
+                                    <small><?= form_error('gst_amount'); ?></small>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-success btn-sm pull-right"><i class="fa fa-plus"></i> Add</button> 
@@ -86,6 +100,20 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Tax<span class="astrick">*</span></label>
+                                    <select class="form-control form-control-sm" name="gst_amount">
+                                        <option value="">-- Select Tax --</option>
+                                        <option value="5" <?= set_value('gst_amount',$product['tax']) == "5"?'selected':''; ?>>5%</option>
+                                        <option value="12" <?= set_value('gst_amount',$product['tax']) == "12"?'selected':''; ?>>12%</option>
+                                        <option value="18" <?= set_value('gst_amount',$product['tax']) == "18"?'selected':''; ?>>18%</option>
+                                        <option value="28" <?= set_value('gst_amount',$product['tax']) == "28"?'selected':''; ?>>28%</option>
+                                    </select>
+                                    <small><?= form_error('gst_amount'); ?></small>
+                                </div>
+                            </div>
+
                             <input type="hidden" name="id" value="<?= $product['id'] ?>">
                         </div>
                         <div class="card-footer text-right">
@@ -104,6 +132,7 @@
                             <thead>
                                 <tr>
                                     <th>Product Name</th>
+                                    <th class="text-center">TAX</th>
                                     <th class="text-right">Price of Manufactured</th>
                                     <th class="text-right">Price of Sell</th>
                                     <th class="text-center">Action</th>
@@ -113,6 +142,7 @@
                                 <?php foreach ($products as $key => $product){ ?>
                                     <tr>
                                         <td><?= $product['name'] ?></td>
+                                        <td class="text-center"><?= $product['tax'] ?>%</td>
                                         <td class="text-right"><?= $product['price'] ?></td>
                                         <td class="text-right"><?= $product['regular_price'] ?></td>
                                         <td class="text-center">

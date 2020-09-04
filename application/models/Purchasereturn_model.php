@@ -1,7 +1,8 @@
 <?php
-class Sales_model extends CI_Model
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+class Purchasereturn_model extends CI_Model
 {
-	public $table = "sales";  
+	public $table = "purchasereturn";  
 	public $select_column = array("id","client_id", "invoice","chalan","challan_total" ,"invoice_total","tax_total","net_invoice","date","desc");  
 	public $order_column = array("date","invoice");
 
@@ -11,17 +12,16 @@ class Sales_model extends CI_Model
 		$this->load->database();
 	}
 
-	public function get_sale($id)
+	public function get_purchase($id)
 	{
-		return $this->db->get_where('sales',['id' => $id])->result_array();
+		return $this->db->get_where('purchasereturn',['id' => $id])->result_array();
 	}
 
 	public function get_details($id)
 	{	
 		$this->db->order_by('id','asc');
-		return $this->db->get_where('sale_detail',['invoice' => $id])->result_array();
+		return $this->db->get_where('purchasereturn_detail',['invoice' => $id])->result_array();
 	}
-
 
 	public function make_query()  
 	{  
@@ -29,24 +29,11 @@ class Sales_model extends CI_Model
 		$this->db->from($this->table); 
 		if(isset($_POST["search"]["value"]))  
 		{  
-			// $this->db->group_start();
-		    // $this->db->like("business_name", $_POST["search"]["value"]);  
-		    // $this->db->or_like("business_reg", $_POST["search"]["value"]);  
-		    // $this->db->or_like("business_phone", $_POST["search"]["value"]);  
-		    // $this->db->or_like("poc_no", $_POST["search"]["value"]);  
-		    // $this->db->or_like("email", $_POST["search"]["value"]);
-		    // $this->db->or_like("password", $_POST["search"]["value"]);
-		    // $this->db->or_like("country", $_POST["search"]["value"]);
-		    // $this->db->or_like("state", $_POST["search"]["value"]);
-		    // $this->db->or_like("city", $_POST["search"]["value"]);
-		    // $this->db->or_like("pin", $_POST["search"]["value"]);
-		    // $this->db->or_like("street", $_POST["search"]["value"]);
-		    // $this->db->group_end();
+			
 		}  
 		if(isset($_POST["order"]))  
 		{  
 		    $this->db->order_by($this->order_column[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);  
-		    
 		}  
 		else  
 		{  
@@ -78,11 +65,6 @@ class Sales_model extends CI_Model
         $this->db->from($this->table);
         return $this->db->count_all_results();  
     }
-
-
-
-
-
 
 }
 ?>

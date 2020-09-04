@@ -45,6 +45,7 @@ class Products extends CI_Controller {
         $this->form_validation->set_rules('name','Name','required');
         $this->form_validation->set_rules('price','Price of Manufactured','required|decimal');
         $this->form_validation->set_rules('sprice','Price of Sell','required|decimal');
+        $this->form_validation->set_rules('gst_amount','TAX','required');
         
         if($this->form_validation->run()==FALSE){
             $data['_title']     = 'Products';
@@ -58,6 +59,7 @@ class Products extends CI_Controller {
             $data   =   [   
                 'name'         =>  strtoupper($this->input->post('name')),
                 'price'        =>  $this->input->post('price'),
+                'tax'           =>  $this->input->post('gst_amount'),
                 'regular_price'=>  $this->input->post('sprice')
             ];
 
@@ -89,6 +91,7 @@ class Products extends CI_Controller {
         $this->form_validation->set_rules('name','Name','required');
         $this->form_validation->set_rules('price','Price of Manufactured','required|decimal');
         $this->form_validation->set_rules('sprice','Price of Sell','required|decimal');
+        $this->form_validation->set_rules('gst_amount','TAX','required');
         
         if($this->form_validation->run()==FALSE){
             $data['_title']     = 'Products';
@@ -101,6 +104,7 @@ class Products extends CI_Controller {
             $data   =   [   
                 'name'         =>  strtoupper($this->input->post('name')),
                 'price'        =>  $this->input->post('price'),
+                'tax'           =>  $this->input->post('gst_amount'),
                 'regular_price'=>  $this->input->post('sprice')
             ];
             $this->db->where('id',$this->input->post('id'));

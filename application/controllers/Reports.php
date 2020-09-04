@@ -32,6 +32,8 @@ class Reports extends CI_Controller {
             $this->db->or_where('type',tsalepay());
             $this->db->or_where('type',tpurchase());
             $this->db->or_where('type',tpurchasepay());
+            $this->db->or_where('type',tsalereturn());
+            $this->db->or_where('type',tpurchasereturn());
 		$this->db->group_end();
 		$this->db->order_by('date','asc');
 		if($this->input->post('type') == 'invoice'){
@@ -86,10 +88,12 @@ class Reports extends CI_Controller {
                 $this->db->group_start();
                 if($this->input->post('type') == '1'){
                     $this->db->or_where('type',tsalepay());
+                    $this->db->or_where('type',tsalereturn());
                     $this->db->or_where('type',tsale());
                 }else if($this->input->post('type') == '2'){
                     $this->db->or_where('type',tpurchase());
                     $this->db->or_where('type',tpurchasepay());
+                    $this->db->or_where('type',tpurchasereturn());
                 }else if($this->input->post('type') == '3'){
                     $this->db->or_where('type',texpensepay());
                 }

@@ -166,9 +166,9 @@
 
                     
 
-                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("sales","salespayments"))[1]; ?>">
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("sales","salespayments","salesreturn"))[1]; ?>">
             
-                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("sales","salespayments"))[0]; ?>">
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("sales","salespayments","salesreturn"))[0]; ?>">
                             <i class="nav-icon fa fa-shopping-bag"></i>
                             <p>Sales
                                 <i class="fa fa-angle-left right"></i>
@@ -192,12 +192,21 @@
                                     </p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url('salesreturn'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("salesreturn"))[0]; ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Sales Return
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
-                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("purchase","purchasepay"))[1]; ?>">
+                    <li class="nav-item has-treeview <?php menu($this->uri->segment(1),array("purchase","purchasepay","purchasereturn"))[1]; ?>">
             
-                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("purchase","purchasepay"))[0]; ?>">
+                        <a href="#" class="nav-link <?php menu($this->uri->segment(1),array("purchase","purchasepay","purchasereturn"))[0]; ?>">
                             <i class="nav-icon fa fa-shopping-bag"></i>
                             <p>Purchase
                                 <i class="fa fa-angle-left right"></i>
@@ -219,6 +228,14 @@
                                     <i class="nav-icon fa fa-circle-o"></i>
                                     <p>
                                         Purchase Payments
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url('purchasereturn'); ?>" class="nav-link <?php menu($this->uri->segment(1),array("purchasereturn"))[0]; ?>">
+                                    <i class="nav-icon fa fa-circle-o"></i>
+                                    <p>
+                                        Purchase Return
                                     </p>
                                 </a>
                             </li>
@@ -322,7 +339,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('reports/get_register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("get_register","register_result"))[0]; ?>">
+                                <a href="<?= base_url('reports/get_register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("get_register","get_register_result"))[0]; ?>">
                                     <i class="nav-icon fa fa-circle-o"></i>
                                     <p>
                                         Register
@@ -330,7 +347,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= base_url('reports/register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("register","get_register_result"))[0]; ?>">
+                                <a href="<?= base_url('reports/register'); ?>" class="nav-link <?= menu($this->uri->segment(2),array("register","register_result"))[0]; ?>">
                                     <i class="nav-icon fa fa-circle-o"></i>
                                     <p>
                                         Total Till Today

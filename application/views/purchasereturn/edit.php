@@ -1,5 +1,5 @@
 <title><?=  $_title; ?> | <?= $this->config->config["projectTitle"] ?></title>
-<form method="post" action=" <?= base_url('sales/update')?>">
+<form method="post" action=" <?= base_url('purchasereturn/update')?>">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row">
@@ -158,7 +158,7 @@
                             </div>
                         </div>
                         <div class="card-footer text-right">
-                            <a href="<?= base_url('sales') ?>" class="btn btn-danger btn-sm">Cancel</a>
+                            <a href="<?= base_url('purchasereturn') ?>" class="btn btn-danger btn-sm">Cancel</a>
                             <input type="hidden" name="id" value="<?= $sale['id'] ?>">
                             <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-save"></i> Save</button>
                         </div>

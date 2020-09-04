@@ -90,7 +90,7 @@
                                 <?php $total = 0; $tax = 0; $gross = 0; ?>
                                 <?php foreach ($result as $key => $value) { ?>
                                     <tr>
-                                        <td class="text-center"><?= vd($value['date']) ?></td>
+                                        <td class="text-center" data-sort="<?= strtotime($value['date']) ?>"><?= vd($value['date']) ?></td>
                                         <td class="text-center">
                                             <?php if($type == '1'){ ?>
                                                 <a href="<?= base_url('sales/edit/').$value['tra_id'] ?>" target="_blank">
@@ -179,7 +179,7 @@
             "columnDefs": [
                 { 
                     "orderable": false, 
-                    "targets": [0,1,2,3,4,5] 
+                    "targets": [2,3,4,5] 
                 }
             ] 
         });  
