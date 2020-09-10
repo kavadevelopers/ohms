@@ -182,7 +182,9 @@
                     json = $('#client option:selected').data('products');
                     $.each(json, function(index) {
                         if(json[index].product == product){
-                            $("#prodprice"+id).val(json[index].price);
+                            if($("#prodprice"+id).val() == ""){
+                                $("#prodprice"+id).val(json[index].price);
+                            }
                         }
                     });
                     $("#taxPer"+id).val($("#product"+id+" option:selected").data('tax'));
