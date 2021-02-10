@@ -224,6 +224,24 @@ function vch_no($type,$tra_id,$tra_type)
             $invoice = $CI->db->get_where('purchasereturn',['id' => $tra_id])->result_array()[0];
             return '<a href="'.base_url('purchasereturn/edit/').$invoice['id'].'" target="_blank">'.$invoice['chalan'].'</a>';
         }
+    }else if($type == 2){
+        $CI =& get_instance();
+        if($tra_type == 'w'){
+            $invoice = $CI->db->get_where('sale_payments',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('salespayments/edit/').$invoice['id'].'" target="_blank">'.$invoice['id'].'</a>';
+        }else{
+            $invoice = $CI->db->get_where('sale_payments',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('salespayments/edit/').$invoice['id'].'" target="_blank">'.$invoice['id'].'</a>';
+        }
+    }else if($type == 4){
+        $CI =& get_instance();
+        if($tra_type == 'w'){
+            $invoice = $CI->db->get_where('purchase_payments',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('purchasepay/edit/').$invoice['id'].'" target="_blank">'.$invoice['id'].'</a>';
+        }else{
+            $invoice = $CI->db->get_where('purchase_payments',['id' => $tra_id])->result_array()[0];
+            return '<a href="'.base_url('purchasepay/edit/').$invoice['id'].'" target="_blank">'.$invoice['id'].'</a>';
+        }
     }
     else{
         return "-";
