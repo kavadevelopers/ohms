@@ -307,4 +307,31 @@ function amountCreDeb($credit,$debit){
     }
 }
 
+function sendDbEmail($file)
+{
+    $CI =& get_instance();
+    $CI->load->library('email');
+    $config = array(
+        'protocol'      => 'SMTP',
+        'smtp_host'     => "mail.kavatechnologies.com",
+        'smtp_port'     => "465",
+        'smtp_user'     => "dbbackup@kavatechnologies.com",
+        'smtp_pass'     => "dbbackup",
+        'mailtype'      => 'html',
+        'charset'       => 'utf-8'
+    );
+    $CI->email->initialize($config);
+    $CI->email->set_mailtype("html");
+    $CI->email->set_newline("\r\n");
+    $CI->email->to("kavadevdbbackups@gmail.com");
+    $CI->email->from("dbbackup@kavatechnologies.com","Kava Technologies");
+    $CI->email->subject("OHMS CONTROL SYSTEM");
+    $CI->email->message("DB Backup Dated :- ".date('d-M-Y h:i A'));
+    $CI->email->attach('./dbbackupfolder/'.$file);
+    if($CI->email->send()){
+        echo "ok";
+    }else{
+        echo $CI->email->print_debugger();
+    }
+}
 ?>
